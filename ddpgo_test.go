@@ -36,7 +36,7 @@ func TestController(t *testing.T) {
 
 	pixelCount := 720
 
-	fps := 60
+	fps := 1
 	delay := 1000 / fps
 
 	ticker := time.NewTicker(time.Millisecond * time.Duration(delay))
@@ -50,11 +50,13 @@ func TestController(t *testing.T) {
 			g := generateInt8()
 			b := generateInt8()
 
+      brightness := 0.2
+
 			fmt.Println(r, g, b)
 
-			pixelData[i*3] = r
-			pixelData[i*3+1] = g
-			pixelData[i*3+2] = b
+			pixelData[i*3] = byte(float64(r) * brightness)
+			pixelData[i*3+1] = byte(float64(g) * brightness)
+			pixelData[i*3+2] = byte(float64(b) * brightness)
 		}
 
 		go func() {
